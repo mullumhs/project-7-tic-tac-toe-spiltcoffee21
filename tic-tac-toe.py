@@ -24,7 +24,20 @@ def win_check():
     if board[2][0] == board[2][1] == board[2][2] and not board[2][0] == ' - ':
         return True
     # check left column
-
+    if board[0][0] == board[1][0] == board[2][0] and not board[0][0] == ' - ':
+        return True
+    # check middle column
+    if board[0][1] == board[1][1] == board[2][1] and not board[0][1] == ' - ':
+        return True
+     # check right column
+    if board[0][2] == board[1][2] == board[2][2] and not board[0][2] == ' - ':
+        return True
+    # check 1 2 3 diagonal 
+    if board[0][0] == board[1][1] == board[2][2] and not board[0][0] == ' - ':
+        return True
+    # check 3 2 1 diagonal
+    if board[0][2] == board[1][1] == board[2][0] and not board[0][2] == ' - ':
+        return True
 
 playerCounter = 0
 init_board()
@@ -35,6 +48,7 @@ while True:
     token = ' X '
     if playerCounter % 2 == 0:
         token = ' O '
+
 
     print('')
     choice_col =int(input("choose row (1-3): "))-1
@@ -54,10 +68,14 @@ while True:
     else:
         print("invaled placement")
     
+    if playerCounter == 9:
+            print ("draw")
+            break
+
     
-    if win_check():
-        print("Win")
-        
-      
+    
     print_board()
 
+    if win_check():
+        print("Win")
+        break
